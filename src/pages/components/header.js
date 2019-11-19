@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import './header.css';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../images/logo.png';
+import { withRouter } from 'react-router'
 
 class Header extends Component {
+
+  handleClick = () => {
+    this.props.history.goBack()
+  }
+
   render() {
     return (
       <header className="Header">
@@ -36,6 +42,9 @@ class Header extends Component {
               <NavLink to="/perfil" activeClassName="is-selected">
                 Perfil
               </NavLink>
+              <a onClick={this.handleClick}>
+                LINK
+              </a>
             </li>
           </ul>
         </nav>
@@ -44,4 +53,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default withRouter(Header)
