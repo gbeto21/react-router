@@ -11,7 +11,7 @@ import { Map as map } from 'immutable';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Header from '../pages/components/header'
 import contact from '../pages/components/contact';
 
@@ -56,10 +56,13 @@ render(
     <Provider store={store}>
       <Fragment>
         <Header />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/videos" component={Videos} />
-        <Route exact path="/contacto" component={contact} />
-        <Route component={NotFound} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/videos" component={Videos} />
+          <Redirect from="/v" to="/videos" />
+          <Route exact path="/contacto" component={contact} />
+          <Route component={NotFound} />
+        </Switch>
         {/* <h1>404 Not foutnd.</h1> */}
         {/* </Route> */}
         {/* <Home /> */}

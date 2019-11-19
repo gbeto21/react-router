@@ -7,7 +7,7 @@ class Header extends Component {
   render() {
     return (
       <header className="Header">
-        <img src={logo} width={250}/>
+        <img src={logo} width={250} />
         <nav>
           <ul>
             <li>
@@ -20,6 +20,13 @@ class Header extends Component {
                 Videos
               </NavLink>
             </li>
+
+            <li>
+              <NavLink to="/v">
+                Redirect
+              </NavLink>
+            </li>
+
             <li>
               <NavLink to="/contacto" activeClassName="is-selected">
                 Contacto
