@@ -1,10 +1,16 @@
 const express = require('express')
-
+const App = require('../dist/ssr/app')
+const ReactRouter = require('react-router')
 const app = express()
 
-app.get('*', (req, res) => {
+  < ReactRouter.StaticRouter >
+  <App />
+</ReactRouter.StaticRouter >
+
+
+  app.get('*', (req, res) => {
     console.log(
-        req.url)
+      req.url)
     res.write(`
     <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +27,7 @@ app.get('*', (req, res) => {
 </body>
 </html>`)
     res.end()
-})
+  })
 
 app.listen(3000)
 console.log('el server prendió en 3000')
