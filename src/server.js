@@ -1,17 +1,22 @@
-const express = require('express')
-const App = require('../dist/ssr/app')
-const ReactRouter = require('react-router')
-const app = express()
+import express from 'express'
+import App from '../dist/ssr/app'
+import { StaticRouter } from 'react-router'
+import reactDOMServer from 'react-dom/server'
+const app = express();
 
-  < ReactRouter.StaticRouter >
-  <App />
-</ReactRouter.StaticRouter >
+app.get('*', (req, res) => {
 
+  const html = reactDOMServer.renderToString(
 
-  app.get('*', (req, res) => {
-    console.log(
-      req.url)
-    res.write(`
+    < StaticRouter
+      location="{req.url}"
+      context={{
+        name: 'Variable'
+      }}>
+      <App />
+    </StaticRouter >
+  )
+  res.write(`
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +31,8 @@ const app = express()
   <!-- <script src="dist/js/home.7646f097e8e64cbf8f09.js"></script> -->
 </body>
 </html>`)
-    res.end()
-  })
+  res.end()
+})
 
 app.listen(3000)
 console.log('el server prendió en 3000')
